@@ -1,3 +1,5 @@
+© 2026 Andrii Shavel. This file is protected under the Iceberg Framework Commercial License v1.0.  
+See: [COMMERCIAL_LICENSE.md](./COMMERCIAL_LICENSE.md)
 
 ---
 
