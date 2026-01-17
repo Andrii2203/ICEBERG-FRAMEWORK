@@ -257,5 +257,5 @@ Iceberg — це відповідь.
 ---
 
 ## ❄ License
-See `LICENSE.md` and `COMMERCIAL_LICENSE.md`.
-
+- Open components: [MIT License](./LICENSE.md)
+- Proprietary components: [Commercial License](./COMMERCIAL_LICENSE.md)
