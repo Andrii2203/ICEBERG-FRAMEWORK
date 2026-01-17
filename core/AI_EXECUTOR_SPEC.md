@@ -1,3 +1,7 @@
+© 2026 Andrii Shavel. This file is protected under the Iceberg Framework Commercial License v1.0.  
+See: [COMMERCIAL_LICENSE.md](./COMMERCIAL_LICENSE.md)
+
+
 # AI EXECUTOR — TECHNICAL SPECIFICATION (v1.0)
 A deterministic execution engine for controlling AI behavior, enforcing standards, and producing reproducible outcomes.
 

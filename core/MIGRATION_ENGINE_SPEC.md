@@ -1,3 +1,7 @@
+© 2026 Andrii Shavel. This file is protected under the Iceberg Framework Commercial License v1.0.  
+See: [COMMERCIAL_LICENSE.md](./COMMERCIAL_LICENSE.md)
+
+
 # MIGRATION ENGINE — TECHNICAL SPECIFICATION (v1.0)
 A deterministic engine for executing, validating, and governing website and system migrations under the Iceberg Method.
 

@@ -1,3 +1,7 @@
+© 2026 Andrii Shavel. This file is protected under the Iceberg Framework Commercial License v1.0.  
+See: [COMMERCIAL_LICENSE.md](./COMMERCIAL_LICENSE.md)
+
+
 # VALIDATION ENGINE — TECHNICAL SPECIFICATION (v1.0)
 A deterministic validation system that ensures AI outputs are correct, complete, compliant, and aligned with Iceberg Method standards and protocols.
 

@@ -1,3 +1,7 @@
+© 2026 Andrii Shavel. This file is protected under the Iceberg Framework Commercial License v1.0.  
+See: [COMMERCIAL_LICENSE.md](./COMMERCIAL_LICENSE.md)
+
+
 # PROJECT GENERATOR PRO — TECHNICAL SPECIFICATION (v1.0)
 A deterministic project generation engine that creates fully structured, compliant, and Iceberg‑ready projects with zero improvisation.
 

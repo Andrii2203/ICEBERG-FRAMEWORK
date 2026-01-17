@@ -1,3 +1,7 @@
+© 2026 Andrii Shavel. This file is protected under the Iceberg Framework Commercial License v1.0.  
+See: [COMMERCIAL_LICENSE.md](./COMMERCIAL_LICENSE.md)
+
+
 # ICEBERG MEMORY ENGINE — TECHNICAL SPECIFICATION (v1.0)
 A deterministic long‑term memory system for AI execution, designed to preserve context, enforce discipline, and guarantee reproducibility across tasks, sessions, and projects.
 
