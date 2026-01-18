@@ -8,7 +8,7 @@ Built on standards, protocols, execution maps, and strict governance.
 The official Iceberg Framework landing website (multilingual, PWA, Next.js):
 
 - Repo: https://github.com/Andrii2203/ICEBERG-FRAMEWORK-SITE
-- Live: https://iceberg-six.vercel.app/en
+- Live: https://iceberg-framework-site.vercel.app/en
 
 ## ❄ What Is Iceberg?
 Iceberg Framework — це система документів, протоколів і стандартів, які забезпечують:
