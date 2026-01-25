@@ -63,11 +63,32 @@
 - Task List
 - Execution Log
 
+## 1.2.1 Memory Lock
+- Зафіксувати:
+  - памʼять не перезаписується
+  - памʼять доповнюється тільки через ICEBERG_TASK_DRAFT.md
+  - кожна фаза має свій memory snapshot
+
+
 ## 1.3. Read Human–AI Contract
 - Прочитати контракт взаємодії
 - Зафіксувати правила поведінки
 
 ---
+
+# 1.4. Templates Lock
+- Прочитати всі шаблони з /templates/
+- Зафіксувати відповідність між фазами та шаблонами
+- Заборонити створення артефактів без шаблону
+
+# 1.5. Template–Artifact Mapping
+- Створити таблицю відповідності:
+| Template | Artifact |
+|----------|----------|
+| ArchitectureAuditTemplate.md | ArchitectureAudit.md |
+| SEOAuditTemplate.md | SEOAudit.md |
+| ... | ... |
+- Заборонити створення артефактів без відповідного шаблону
 
 # 2. READ CORE ICEBERG STANDARDS
 
@@ -109,6 +130,18 @@
 - антипатерни  
 - дублікати  
 - технічний борг  
+
+## 3.1.1 Component Classification
+Створити:
+- COMPONENT_MAP.md
+
+Класифікувати:
+- Server Components  
+- Client Components  
+- Shared Components  
+- Page‑specific Components  
+- Interactive Components  
+- Stateless Components  
 
 ## 3.2. SEO Audit
 Створити:
@@ -160,6 +193,13 @@
 - Чи всі аудити завершені?
 - Чи немає пропущених сторінок?
 - Чи зафіксовано всі проблеми?
+
+## 3.7. Create AUDIT_SUMMARY.md
+- Зібрати всі findings з аудиту
+- Згрупувати за категоріями
+- Вказати кількість проблем
+- Вказати кількість критичних проблем
+- Вказати загальний рейтинг якості
 
 ---
 
@@ -228,6 +268,14 @@
 ## 5.5. STOP‑CHECK
 - Чи всі цілі визначені?
 - Чи відповідають вони Iceberg Standard?
+
+# 5.6. EXECUTION PLAN PHASE
+
+## 5.6.1. Create EXECUTION_PLAN.md
+- Визначити всі фази
+- Визначити всі кроки
+- Вказати executor (AI / Human / Hybrid)
+- Вказати STOP‑CHECK для кожного кроку
 
 ---
 
@@ -303,12 +351,19 @@
 
 ## 9.1. Documentation
 Оновити:
-- ARCHITECTURE.md  
-- SEO.md  
-- ACCESSIBILITY.md  
-- PERFORMANCE.md  
-- CONTENT_MODEL.md  
-- REFACTORING_PLAN.md  
+- ArchitectureAudit.md  
+- SEOAudit.md  
+- AccessibilityAudit.md  
+- PerformanceAudit.md  
+- ContentAudit.md  
+- TargetArchitecture.md  
+- TargetSEO.md  
+- TargetAccessibility.md  
+- TargetPerformance.md  
+- RefactoringPlan.md  
+- ExecutionPlan.md  
+- DeliveryPackage.md  
+
 
 ## 9.2. Final Validation
 - структура відповідає Iceberg  
@@ -319,3 +374,23 @@
 ## 9.3. Project Ready
 Сайт приведено до Iceberg Standard.
 
+## 9.4. Create DELIVERY_PACKAGE.md
+- Включити Repo B
+- Включити документацію
+- Включити QA звіти
+- Включити Handover Notes
+
+## 9.5. ICEBERG COMPLIANCE MATRIX
+- Architecture = PASS / FAIL
+- SEO = PASS / FAIL
+- Accessibility = PASS / FAIL
+- Performance = PASS / FAIL
+- Content = PASS / FAIL
+- UX = PASS / FAIL
+- Documentation = PASS / FAIL
+
+# 10. GLOBAL STOP‑CHECK
+- [ ] Чи всі шаблони з /templates/ були використані?
+- [ ] Чи всі артефакти створені?
+- [ ] Чи всі STOP‑CHECK пройдені?
+- [ ] Чи немає хаосу?
