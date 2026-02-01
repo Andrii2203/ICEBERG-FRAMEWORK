@@ -9,6 +9,7 @@ including but not limited to:
 - Iceberg Migration Engine  
 - Iceberg Validation Engine  
 - Iceberg Project Generator Pro  
+- Iceberg Context Matrix (all versions, including v1 and future editions)
 - Any enterprise‑grade extensions, modules, or integrations
 
 These components are NOT covered by the MIT License and may not be used,  
