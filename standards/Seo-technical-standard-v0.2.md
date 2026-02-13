@@ -1,5 +1,5 @@
 # SEO Technical Standard  
-(Iceberg Framework — Enterprise Edition, v0.1)
+(Iceberg Framework — Enterprise Edition, v0.2)
 
 This standard defines the **official, deterministic, scalable, and technically correct SEO architecture** for all Iceberg‑based Next.js applications.
 
@@ -17,8 +17,19 @@ It covers:
 - accessibility SEO  
 - anti‑patterns  
 - QA  
+- E‑E‑A‑T
+- Indexation Lifecycle Policy
+- Observability
+- Internal Linking Architecture
+- Parameterized URL Governance
+- HTTP Status Code SEO Policy
+- International Targeting Rules
+- Performance Monitoring & SEO Health
+- Structured Data Versioning
+- Content Freshness Policy
+- Log-Based SEO Monitoring
 
-This is an enterprise‑grade document with **35 sections**.
+This is an enterprise‑grade document with **36 sections**.
 
 ---
 
@@ -193,13 +204,180 @@ Use `summary_large_image` by default.
 
 ---
 
-# 13. hreflang Architecture
+# 13. Multilingual Canonical Architecture (Required for i18n Sites)
 
-## 13.1. Rules
-- required for multilingual sites  
-- must include self‑reference  
-- must include x‑default  
+This section defines mandatory canonical, hreflang, and indexing behavior for multilingual Next.js applications.
 
+This section overrides generic canonical rules when i18n routing is enabled.
+
+## 13.1. Canonical Rules for Multilingual Pages
+Rule 1 — Self-Canonical Per Locale (Mandatory)
+
+Each localized page must canonicalize to itself.
+
+/en/enterprise → canonical: /en/enterprise
+/fr/enterprise → canonical: /fr/enterprise
+/de/enterprise → canonical: /de/enterprise
+
+
+❌ Forbidden:
+
+/fr/enterprise → canonical: /en/enterprise
+
+
+Each language version is a primary entity, not a duplicate.
+
+Rule 2 — Canonical Must Never Cross Language Boundaries
+
+Canonical URLs must never point to a different locale.
+
+Cross-language relationships are handled exclusively via hreflang.
+
+Rule 3 — Canonical Determinism
+
+Canonical URLs must be:
+
+stable
+
+absolute
+
+environment-independent
+
+Canonical must not depend on:
+
+IP detection
+
+Accept-Language header
+
+cookies
+
+geo logic
+
+runtime redirects
+
+## 13.2. Root URL Strategy (Mandatory)
+
+One deterministic strategy must be selected.
+
+Recommended Enterprise Strategy
+/ → 301 → /en
+
+
+Root URL:
+
+must not be indexable
+
+must not appear in sitemap
+
+must not define canonical
+
+must not compete with localized pages
+
+/en becomes the primary indexable homepage.
+
+## 13.3. hreflang Enforcement Rules
+
+For every localized page:
+
+self-reference is mandatory
+
+all existing languages must be listed
+
+x-default must exist
+
+Example:
+
+alternates: {
+  canonical: "https://site.com/en/enterprise",
+  languages: {
+    en: "https://site.com/en/enterprise",
+    fr: "https://site.com/fr/enterprise",
+    de: "https://site.com/de/enterprise",
+    "x-default": "https://site.com/en/enterprise",
+  }
+}
+
+
+Missing self-reference = SEO defect.
+Missing x-default = architecture violation.
+
+## 13.4. Multilingual Sitemap Rules
+
+For multilingual sites:
+
+hreflang must exist in HTML OR sitemap
+
+enterprise standard requires both
+
+Sitemap must:
+
+include only indexable localized URLs
+
+exclude root redirect
+
+exclude noindex pages
+
+## 13.5. Language Isolation Rule
+
+Each locale must be treated as an independent search entity.
+
+Localized pages must have:
+
+unique title
+
+unique description
+
+translated OpenGraph
+
+translated Twitter metadata
+
+translated schema.org blocks
+
+❌ Forbidden:
+
+English title on French page
+Shared description across locales
+Schema language mismatch
+
+## 13.6. Thin Multilingual Content Detection
+
+Thin localized content increases duplicate risk.
+
+Risk patterns:
+
+< 150 words
+
+auto-translated text without adaptation
+
+hero-only landing pages
+
+identical layout + minimal text variation
+
+Minimum recommended for stable indexing:
+
+300+ words
+
+structured headings (H1 + H2)
+
+language-native phrasing
+
+contextual differentiation
+
+Why This Section Is Critical
+
+Without a formal multilingual canonical architecture:
+
+Google may collapse locales
+
+Canonical conflicts may occur
+
+“Google selected different canonical” errors appear
+
+Pages fall into “Discovered – currently not indexed”
+
+Root and locale URLs compete
+
+This section prevents cross-locale canonical drift and ensures deterministic indexing.
 ---
 
 # 14. Schema.org Architecture
@@ -487,6 +665,262 @@ Article.author → Person
 
 schema must be validated and error-free (Search Console / Rich Results)
 
+---
+
+## 37. Metadata Validation & CI Enforcement
+Це серце enterprise‑SEO.
+
+Ти правильно підмітив: canonical/hreflang/title ламаються не навмисно, а випадково.
+І без CI‑валідації це помітять тільки тоді, коли:
+
+впаде індексація
+
+зʼявляться canonical‑конфлікти
+
+Google вибере іншу канонічну
+
+сторінки підуть у “Discovered – not indexed”
+
+Те, що ти описав — це повноцінний SEO‑QA pipeline, який робить стандарт виконуваним.
+
+Цей блок — must-have.
+
+## 38. Crawl Budget Optimization
+Особливо важливо для мультимовних сайтів і нових доменів.
+
+Ти дуже точно описав:
+
+Google не витрачає crawl budget на нові сайти
+
+мультимовність множить навантаження ×8
+
+параметри створюють тисячі дублікатів
+
+infinite scroll може зʼїсти весь crawl budget
+
+Твої правила — це класичний enterprise‑crawl‑management.
+
+Цей блок — must-have.
+
+## 39. Canonical & Redirect Conflict Prevention
+Це одна з найчастіших причин SEO‑помилок у Search Console.
+
+Ти правильно виділив:
+
+canonical → 301
+
+canonical → noindex
+
+canonical → 404
+
+canonical loop
+
+redirect chain
+
+Це саме ті ситуації, коли Google каже:
+
+“Google chose a different canonical than user”
+
+Твій блок — це технічна страховка від цього.
+
+Must-have.
+
+## 40. HTTP Status Code SEO Policy
+Soft 404 — це вбивця індексації.
+
+Ти дуже точно описав:
+
+404 має бути справжнім 404
+
+410 для видалених сторінок
+
+error pages must be noindex
+
+canonical на 404 — заборонено
+
+hreflang на 404 — заборонено
+
+Це критично для мультимовних сайтів, де 404 можуть дублюватися між локалями.
+
+Must-have.
+
+## 41. International Targeting Rules
+hreflang ≠ geo targeting.
+
+Ти правильно виділив:
+
+заборона IP‑redirect
+
+заборона geo‑redirect для ботів
+
+стабільна структура локалей
+
+crawlable language selector
+
+заборона змішаного контенту
+
+Це захищає сайт від “locale collapse”, коли Google вирішує, що всі мови — дублікати.
+
+Must-have.
+
+## 42. Performance Monitoring & SEO Health
+Ти нарешті додаєш enforcement, а не просто пороги.
+
+Ти правильно зазначив:
+
+LCP < 2.5s — це не правило, якщо його ніхто не перевіряє
+
+потрібні регресійні алерти
+
+потрібен Lighthouse pre-deploy
+
+потрібні бюджети на JS, зображення, hydration
+
+Це інтеграція DevOps + SEO.
+
+Must-have.
+
+🧠 Опціональні блоки (але дуже сильні)
+✔ Structured Data Versioning
+Корисно, якщо schema часто змінюється.
+
+✔ Content Freshness Policy
+Google любить “last reviewed”, а не просто “last updated”.
+
+✔ Log-Based SEO Monitoring
+Це enterprise‑observability:
+
+аналіз Googlebot
+
+crawl frequency
+
+404 spikes
+
+redirect loops
+
+---
+
+## 43. Parameterized URL Governance
+
+Rules:
+
+parameters that do NOT change content → must canonicalize to base URL
+
+tracking parameters (?utm, ?ref, ?fbclid) → ignored
+
+session IDs → запрещено
+
+?lang= parameters → forbidden (use path-based locale only)
+
+sorting parameters → noindex or canonical
+
+filtering parameters → noindex unless strategic
+
+parameter URLs must not appear in sitemap
+
+sitemap must contain only clean URLs
+
+Без цього Google може:
+
+створити тисячі дублікатів
+
+розмити PageRank
+
+знизити crawl efficiency
+
+Це критично для масштабування.
+
+## 44. Internal Linking Architecture (повноцінна секція)
+
+У тебе немає формалізованого блоку про внутрішню архітектуру.
+
+А це один із найсильніших SEO-сигналів.
+
+## 45. Internal Linking Architecture
+
+Rules:
+
+each indexable page must have ≥ 3 internal links
+
+orphan pages forbidden
+
+anchor text must be descriptive
+
+no “click here”
+
+locale links must remain inside same language
+
+footer links must not create artificial link inflation
+
+breadcrumb linking required for hierarchical content
+
+hub pages must link to all child pages
+
+Це критично для:
+
+розподілу PageRank
+
+тематичної кластеризації
+
+швидкості індексації
+
+## 46. Error Monitoring & Log-Based SEO Observability
+
+Ти маєш статус-код політику,
+але немає production monitoring layer.
+
+Enterprise-рівень вимагає лог-аналізу.
+
+## 47. SEO Observability & Log Monitoring
+
+Rules:
+
+monitor Googlebot crawl frequency
+
+detect 404 spikes
+
+detect redirect loops
+
+detect canonical conflicts
+
+detect non-indexed high-priority pages
+
+monitor index coverage in Search Console
+
+SEO без observability = сліпа зона.
+
+## 48. Indexation Lifecycle Policy (дуже важливо)
+
+Ти маєш indexing rules, але немає lifecycle-контролю.
+
+Enterprise-сайти мають життєвий цикл сторінок:
+
+create
+
+update
+
+merge
+
+deprecate
+
+remove
+
+## 49. Indexation Lifecycle Policy
+
+Rules:
+
+removed pages → 410
+
+merged pages → 301
+
+outdated pages → update or deindex
+
+thin content → merge or improve
+
+deindexed pages must be removed from sitemap
+
+canonical must reflect current lifecycle
+
 # Summary
 
 The SEO Technical Standard ensures:
@@ -500,4 +934,14 @@ The SEO Technical Standard ensures:
 - **enterprise‑grade search visibility**  
 - **zero duplicate content**  
 - **technical SEO excellence**  
-
+- **E‑E‑A‑T**
+- **indexation lifecycle policy**
+- **observability**
+- **internal linking architecture**
+- **parameterized URL governance**
+- **HTTP status code SEO policy**
+- **international targeting rules**
+- **performance monitoring & SEO health**
+- **structured data versioning**
+- **content freshness policy**
+- **log-based SEO monitoring**
