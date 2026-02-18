@@ -1,8 +1,8 @@
 # Task
-test compliance
+test compliance framework
 
 ## Goal
-Complete: test compliance
+Complete: test compliance framework
 
 ## Steps
 1. Analyze intent
