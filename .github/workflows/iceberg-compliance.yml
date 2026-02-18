@@ -13,25 +13,21 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Call Iceberg OS Compliance API
+        shell: powershell
         run: |
-          RESPONSE=$(curl -s http://localhost:3000/v1/compliance/report)
-          echo "API Response:"
-          echo "$RESPONSE"
-
-          SCORE=$(echo "$RESPONSE" | jq -r '.overallScore')
-          PENDING=$(echo "$RESPONSE" | jq -r '.guard.pending | length')
-
-          echo "Score: $SCORE"
-          echo "Pending STOP-CHECK: $PENDING"
-
-          if (( $(echo "$SCORE < 1.0" | bc -l) )); then
-            echo "❌ Compliance score too low"
+          $response = Invoke-RestMethod -Uri "http://localhost:3000/v1/compliance/report"
+          Write-Host "API Response:"
+          Write-Host ($response | ConvertTo-Json -Depth 10)
+          $score = $response.overallScore
+          $pending = $response.guard.pending.Count
+          Write-Host "Score: $score"
+          Write-Host "Pending STOP-CHECK: $pending"
+          if ($score -lt 1.0) {
+            Write-Host "❌ Compliance score too low"
             exit 1
-          fi
-
-          if [ "$PENDING" -gt 0 ]; then
-            echo "❌ STOP-CHECK pending approval"
+          }
+          if ($pending -gt 0) {
+            Write-Host "❌ STOP-CHECK pending approval"
             exit 1
-          fi
-
-          echo "✅ Compliance passed"
+          }
+          Write-Host "✅ Compliance passed"
