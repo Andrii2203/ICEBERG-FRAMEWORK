@@ -19,3 +19,4 @@ Complete: test compliance
 
 ## 6. NOTES FOR FUTURE AI SESSIONS
 - Always follow IPM v0.2
+ 
