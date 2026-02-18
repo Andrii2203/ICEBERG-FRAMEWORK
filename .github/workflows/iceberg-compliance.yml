@@ -1,0 +1,37 @@
+name: Iceberg Compliance Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Call Iceberg OS Compliance API
+        run: |
+          RESPONSE=$(curl -s http://localhost:3000/v1/compliance/report)
+          echo "API Response:"
+          echo "$RESPONSE"
+
+          SCORE=$(echo "$RESPONSE" | jq -r '.overallScore')
+          PENDING=$(echo "$RESPONSE" | jq -r '.guard.pending | length')
+
+          echo "Score: $SCORE"
+          echo "Pending STOP-CHECK: $PENDING"
+
+          if (( $(echo "$SCORE < 1.0" | bc -l) )); then
+            echo "❌ Compliance score too low"
+            exit 1
+          fi
+
+          if [ "$PENDING" -gt 0 ]; then
+            echo "❌ STOP-CHECK pending approval"
+            exit 1
+          fi
+
+          echo "✅ Compliance passed"
