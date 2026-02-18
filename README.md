@@ -3,7 +3,7 @@ A deterministic framework for AI‑assisted software development.
 Built on standards, protocols, execution maps, and strict governance.
 
 ---
- 
+
 ## ❄ Official Website
 The official Iceberg Framework landing website (multilingual, PWA, Next.js):
 
